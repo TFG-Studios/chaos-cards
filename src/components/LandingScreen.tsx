@@ -18,7 +18,9 @@ export default function LandingScreen({ onConnected }: LandingScreenProps) {
     setBusy(true); setError("");
     try {
       const code = kind === "create" ? await createRoom() : await joinRoom(roomCode);
+    if (code) {
       onConnected(code);
+    }
     } catch (err) {
       console.error(err);
       setError("Could not connect to that room. Check the code and try again.");
