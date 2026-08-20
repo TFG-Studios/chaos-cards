@@ -54,7 +54,12 @@ export function useGameSync() {
         nextPlayers[player.id] = makePlayerSnapshot(
           player.id,
           profile?.name || `Player ${Object.keys(nextPlayers).length + 1}`,
-          profile?.color?.hex || (Object.keys(nextPlayers).length === 0 ? "#67e8f9" : "#fb7185"),
+          String(
+            profile?.color?.hex ??
+              (Object.keys(nextPlayers).length === 0
+                ? "#67e8f9"
+                : "#fb7185")
+          ),
         );
         player.setState("chaos.private", {
           hand: makeStarterHand(),
